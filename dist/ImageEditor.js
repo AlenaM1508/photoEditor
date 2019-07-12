@@ -70,6 +70,8 @@ function (_Component) {
     });
 
     _defineProperty(_assertThisInitialized(_this), "updateState", function (props) {
+      console.log('props', props);
+
       _this.setState(props);
     });
 
@@ -155,11 +157,7 @@ function (_Component) {
 
     _defineProperty(_assertThisInitialized(_this), "onDownloadImage", function () {
       var downloadImage = _this.state.downloadImage;
-      downloadImage();
-
-      _this.props.onComplete({
-        status: 'success'
-      });
+      downloadImage(); // this.props.onComplete({ status: 'success'});
 
       _this.props.onClose();
     });
@@ -267,6 +265,7 @@ function (_Component) {
           imageMime = _this$state5.imageMime;
       var _this$props = this.props,
           src = _this$props.src,
+          imageBase64 = _this$props.imageBase64,
           config = _this$props.config,
           onClose = _this$props.onClose,
           onComplete = _this$props.onComplete,
@@ -312,6 +311,7 @@ function (_Component) {
         config: config,
         processWithCloudimage: processWithCloudimage,
         uploadCloudimageImage: uploadCloudimageImage,
+        imageBase64: imageBase64,
         updateState: this.updateState
       };
       var footerProps = {

@@ -693,10 +693,20 @@ function (_Component) {
 
       var imageMime = _this.props.imageMime;
       var base64 = canvas.toDataURL(imageMime);
-      console.log('base64', base64);
       var block = base64.split(";");
       var realData = block[1].split(",")[1];
       var blob = (0, _utils.b64toBlob)(realData, imageMime, null);
+      console.log('blob', blob);
+
+      _this.setState({
+        imageBase64: blob
+      });
+
+      _this.props.onComplete({
+        status: 'success',
+        blob: blob
+      });
+
       return blob;
     });
 
@@ -925,6 +935,7 @@ function (_Component) {
       var splittedSrc = src.split('/');
       var imageName = splittedSrc[splittedSrc.length - 1];
       this.props.updateState({
+        imageBase64: this.state.imageBase64,
         isShowSpinner: true,
         applyChanges: this.applyChanges,
         applyOperations: this.applyOperations,
